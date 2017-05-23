@@ -2,14 +2,12 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <div th:fragment="header">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <!-- Bootstrap -->
-        <link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen"></link>
-        <!-- Bootstrap theme -->
-        <!--<link href="webjars/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" media="screen"></link>-->
-    </div>
+<head th:fragment="header">
+    <Title>VideoClub UPM</Title>
+    <link th:if="${login}" rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!-- Bootstrap -->
+    <link href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 
 <body>

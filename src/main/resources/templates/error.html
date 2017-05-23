@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
     <head>
         <title>Error</title>
@@ -42,7 +42,11 @@
             <p th:unless="${ex} or ${exception} or (${message} and ${message.length() != 0})">
                 Causa desconocida, no hay detalles disponibles</p>
         </div>
+        <div class="container text-center">
+                <a href="/login" text-align="center">
+                    <button type="button" class="btn btn-lg btn-primary">Volver</button>
+                </a>
+        </div>
         <div th:replace="fragments/body :: footer"></div>
     </body>
-
 </html>

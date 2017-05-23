@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <Title>VideoClub UPM</Title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <!-- Bootstrap -->
+        <link href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    </head>
+
+    <body>
+        <div th:replace="fragments/body :: topbar"></div>
+
+        <div>
+            <p th:text="'Helloaaaa, ' + ${user} + '!'"></p>
+            <p th:text="${#httpServletRequest.requestURI}">asdasd</p>
+            <button class="btn btn-success">asdasd</button>
+        </div>
+
+        <div th:replace="fragments/body :: footer"></div>
+    </body>
+</html>

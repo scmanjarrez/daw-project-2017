@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-    <head>
-        <title>Videoclub UPM</title>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
-        <div th:replace="fragments/head :: head"></div>
+    <head th:replace="fragments/head :: header">
     </head>
 
     <body>
@@ -13,6 +10,10 @@
         <div align="center" th:if="${param.logout != null}" class="alert alert-success" role="alert">
             <p>Desconectado correctamente.</p>
         </div>
+        <div align="center" th:if="${param.error}"  class="alert alert-danger" role="alert">
+            <p>Usuario o contraseña incorrectos.</p>
+        </div>
+
         <img th:src="@{/images/cine.jpg}" class="img-responsive center-block" width="500" height="500" alt="Logo" />
         <form th:action="@{/login}" method="POST" class="form-signin">
             <h3 class="form-signin-heading" th:text="Bienvenido"></h3>
@@ -23,9 +24,6 @@
             <input type="password"  th:placeholder="Contraseña"
                    id="password" name="password" class="form-control" /> <br />
 
-            <div align="center" th:if="${param.error}">
-                <p style="font-size: 20; color: #FF1C19;">Usuario o contraseña incorrectos.</p>
-            </div>
             <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Conectar"></button>
         </form>
     </div>
