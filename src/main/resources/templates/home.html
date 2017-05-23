@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>VideoClub</title>
+        <div th:replace="fragments/head :: head"></div>
+    </head>
+
+    <body>
+        <div th:replace="fragments/body :: topbar"></div>
+        <div>
+            <p th:text="'Hello, ' + ${user} + '!'"/>
+        </div>
+        <div th:replace="fragments/body :: footer"></div>
+    </body>
+</html>

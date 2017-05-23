@@ -30,6 +30,7 @@ public class User {
     public User(String username, String password, String email, List<GrantedAuthority> roles) {
         this.username = username;
         this.password = new BCryptPasswordEncoder().encode(password);
+        this.active = 1;
         this.email = email;
         this.roles = roles;
     }
@@ -72,5 +73,16 @@ public class User {
 
     public void setRoles(List<GrantedAuthority> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", active=" + active +
+                ", roles=" + roles +
+                '}';
     }
 }

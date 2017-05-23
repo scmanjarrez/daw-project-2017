@@ -1,5 +1,7 @@
 package upm.etsiinf.daw.controller;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -8,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
 	@RequestMapping("/home")
 	public ModelAndView home() {
-		return null;
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String name = authentication.getName();
+		return new ModelAndView("home").addObject("user", name);
 	}
 }

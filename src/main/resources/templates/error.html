@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <title>Error</title>
+        <div th:replace="fragments/head :: head"></div>
+    </head>
+
+    <body>
+        <br/>
+        <div class="container alert alert-danger" role="alert">
+            <p th:if="${url}">
+                <b>Página:</b> <span th:text="${url}">URL</span>
+            </p>
+
+            <br/>
+
+            <p th:if="${timestamp}" id='created'>
+                <b>Ocurrió:</b>
+                <span th:text="${timestamp}">Marca de tiempo</span>
+            </p>
+
+            <br/>
+
+            <p th:if="${status}">
+                <b>Respuesta:</b>
+                <span th:text="${status}">código de estado</span>
+                <span th:if="${error}" th:text="'('+${error}+')'">error ...</span>
+            </p>
+
+            <br/>
+
+            <div th:if="${ex} or ${exception} or (${message} and ${message.length() != 0})">
+                <b>Causa:</b>
+                <span th:if="${ex}" th:text="${ex}">excepción ...</span>
+                <span th:if="${exception}" th:text="${exception}">excepción ...</span>
+                <span th:if="${message} and ${message.length() != 0}" th:text="${message}">mensaje ...</span>
+            </div>
+
+            <br/>
+
+            <p th:unless="${ex} or ${exception} or (${message} and ${message.length() != 0})">
+                Causa desconocida, no hay detalles disponibles</p>
+        </div>
+        <div th:replace="fragments/body :: footer"></div>
+    </body>
+
+</html>

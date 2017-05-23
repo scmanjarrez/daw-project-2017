@@ -27,5 +27,11 @@ public class DatabaseLoader {
             GrantedAuthority[] userRoles = {new SimpleGrantedAuthority("ROLE_ADMIN")};
             userRepository.save(new User("admin", "admin", "admin@admin.com", Arrays.asList(userRoles)));
         }
+
+        user = userRepository.findByUsername("user");
+        if (user == null){
+            GrantedAuthority[] userRoles = {new SimpleGrantedAuthority("ROLE_USER")};
+            userRepository.save(new User("user", "user", "user@user.com", Arrays.asList(userRoles)));
+        }
     }
 }
