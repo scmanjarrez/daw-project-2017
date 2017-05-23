@@ -1,11 +1,11 @@
 package upm.etsiinf.daw;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-import upm.etsiinf.daw.model.Role;
 import upm.etsiinf.daw.model.User;
-import upm.etsiinf.daw.repository.RoleRepository;
 import upm.etsiinf.daw.repository.UserRepository;
 
 import javax.annotation.PostConstruct;
@@ -19,36 +19,13 @@ import java.util.HashSet;
 public class DatabaseLoader {
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private RoleRepository roleRepository;
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @PostConstruct
     private void initDatabase(){
-        Role role = roleRepository.findByRole("ADMIN");
-        if (role == null){
-            Role nrole = new Role();
-            nrole.setRole("ADMIN");
-            roleRepository.save(nrole);
-        }
-        role = roleRepository.findByRole("USER");
-        if (role == null){
-            Role nrole = new Role();
-            nrole.setRole("USER");
-            roleRepository.save(nrole);
-        }
-        User user = userRepository.findByUser("admin");
-        System.out.println(user);
+        User user = userRepository.findByUsername("admin");
         if (user == null){
-            User nuser = new User();
-            nuser.setUser("admin");
-            nuser.setEmail("admin@admin.com");
-            nuser.setActive(1);
-            nuser.setPassword(bCryptPasswordEncoder.encode("admin"));
-            Role nuserRole = roleRepository.findByRole("ADMIN");
-            nuser.setRoles(new HashSet<Role>(Arrays.asList(nuserRole)));
-            userRepository.save(nuser);
+            GrantedAuthority[] userRoles = {new SimpleGrantedAuthority("ROLE_ADMIN")};
+            userRepository.save(new User("admin", "admin", "admin@admin.com", Arrays.asList(userRoles)));
         }
     }
 }

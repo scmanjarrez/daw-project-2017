@@ -1,22 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <title>Login form</title>
+    <title>Videoclub UPM</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <p th:if="${param.error}">Credenciales incorrectas!</p>
-    <p th:if="${param.logout}">Sesión cerrada correctamente.</p>
 
-    <form th:action="@{/login}" method="post">
-        <label>Nombre de usuario:</label>
-        <input type="text" name="username" />
-        <br />
-        <label>Contraseña:</label>
-        <input type="password" name="password" />
-        <br />
-        <input type="submit" value="Conectar" />
-        <br />
+<div class="container">
+    <img th:src="@{/images/cine.jpg}" class="img-responsive center-block" width="500" height="500" alt="Logo" />
+    <form th:action="@{/login}" method="POST" class="form-signin">
+        <h3 class="form-signin-heading" th:text="Bienvenido al VideoClub UPM"></h3>
+        <br/>
+
+        <input type="text" id="username" name="username"  th:placeholder="Usuario"
+               class="form-control" /> <br/>
+        <input type="password"  th:placeholder="Contraseña"
+               id="password" name="password" class="form-control" /> <br />
+
+        <div align="center" th:if="${param.error}">
+            <p style="font-size: 20; color: #FF1C19;">Usuario o contraseña incorrectos.</p>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Conectar"></button>
     </form>
+</div>
 </body>
 </html>

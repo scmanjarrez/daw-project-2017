@@ -16,39 +16,30 @@ import java.util.Set;
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
-    private Long id;
-
-    @Column(name = "username")
-    private String user;
-
-    @Column(name = "password")
-    @Length(min = 5, message = "La contraseña debe tener al menos 5 caracteres.")
-    @NotEmpty(message = "*Por favor, proporciona una contraseña.")
+    private String username;
     private String password;
-
-    @Column(name = "email")
-    @Email(message = "*Por favor, proporciona un correo válido.")
-    @NotEmpty(message = "*Por favor, proporciona un correo.")
     private String email;
-
-    @Column(name = "active")
     private int active;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<GrantedAuthority> roles;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", user='" + user + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", roles=" + roles +
-                '}';
+    protected User() {
+    }
+
+    public User(String username, String password, String email, List<GrantedAuthority> roles) {
+        this.username = username;
+        this.password = new BCryptPasswordEncoder().encode(password);
+        this.email = email;
+        this.roles = roles;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -59,30 +50,6 @@ public class User {
         this.password = password;
     }
 
-    public int getActive() {
-        return active;
-    }
-
-    public void setActive(int active) {
-        this.active = active;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -91,12 +58,19 @@ public class User {
         this.email = email;
     }
 
-    public Set<Role> getRoles() {
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
+    }
+
+    public List<GrantedAuthority> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(List<GrantedAuthority> roles) {
         this.roles = roles;
     }
-
 }

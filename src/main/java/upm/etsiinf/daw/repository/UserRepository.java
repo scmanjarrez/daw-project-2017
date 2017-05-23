@@ -9,7 +9,6 @@ import upm.etsiinf.daw.model.User;
  * Created by S on 14/05/2017.
  */
 @Repository
-public interface UserRepository extends CrudRepository<User, Long> {
-    User findByUser(String user);
-    User findByEmail(String email);
+public interface UserRepository extends JpaRepository<User, Long> {
+    User findByUsername(String user);
 }
