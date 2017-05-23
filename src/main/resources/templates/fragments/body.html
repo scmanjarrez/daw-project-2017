@@ -24,10 +24,10 @@
                         <li th:classappend="${#httpServletRequest.requestURI == '/home'}? active: ''">
                             <a th:href="@{/home}">Inicio</a>
                         </li>
-                        <li th:classappend="${#httpServletRequest.requestURI == '/admin/users'}? active: ''">
+                        <li sec:authorize="hasAuthority('ROLE_ADMIN')" th:classappend="${#httpServletRequest.requestURI == '/admin/users'}? active: ''">
                             <a th:href="@{/admin/users}">Administrar Usuarios</a>
                         </li>
-                        <li th:classappend="${#httpServletRequest.requestURI == '/admin/movies'}? active: ''">
+                        <li sec:authorize="hasAuthority('ROLE_ADMIN')" th:classappend="${#httpServletRequest.requestURI == '/admin/movies'}? active: ''">
                             <a th:href="@{/admin/movies}">Administrar Películas</a>
                         </li>
 

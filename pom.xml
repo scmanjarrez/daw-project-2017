@@ -71,6 +71,10 @@
             <artifactId>nekohtml</artifactId>
             <version>1.9.21</version><!--$NO-MVN-MAN-VER$-->
         </dependency>
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity4</artifactId>
+        </dependency>
 
     </dependencies>
 
