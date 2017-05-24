@@ -12,6 +12,8 @@ public class HomeController {
 	public ModelAndView home() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String name = authentication.getName();
-		return new ModelAndView("home").addObject("user", name);
+		return new ModelAndView("home")
+				.addObject("user", name)
+				.addObject("home", "true");
 	}
 }

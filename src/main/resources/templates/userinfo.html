@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/head :: header">
+    </head>
+
+    <body>
+        <div th:replace="fragments/body :: topbar"></div>
+        <div class="container">
+            <h1 class="text-center"> Información sobre su cuenta</h1>
+            <br>
+            <br>
+            <div class = "row">
+                <div class = "col-md-4"></div>
+                <div class = "col-md-2"><strong>Nombre de usuario: </strong></div>
+                <div class = "col-md-2" th:text="${userObj.username}">Nombre de usuario</div>
+            </div>
+            <br>
+            <div class = "row">
+                <div class = "col-md-4"></div>
+                <div class = "col-md-2"><strong>Correo: </strong></div>
+                <div class = "col-md-2" th:text="${userObj.email}">Correo</div>
+            </div>
+            <br>
+            <div class = "row">
+                <div class = "col-md-4"></div>
+                <div class = "col-md-2"><strong>Estado: </strong></div>
+                <div class = "col-md-2" th:text="${userObj.active == 1}? 'Activo' : 'Inactivo'">Estado</div>
+            </div>
+            <br>
+            <div class = "row">
+                <div class = "col-md-4"></div>
+                <div class = "col-md-2"><strong>Rol: </strong></div>
+                <div class = "col-md-2"
+                     th:text="${#strings.contains(userObj.roles,'USER')}? 'Usuario' : 'Administrador'">Rol</div>
+            </div>
+            <br>
+            <br>
+            <div class="container text-center">
+                <a href="/home" text-align="center">
+                    <button type="button" class="btn btn-lg btn-primary">Volver</button>
+                </a>
+            </div>
+        </div>
+        <div th:replace="fragments/body :: footer"></div>
+    </body>
+</html>

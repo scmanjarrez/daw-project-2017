@@ -1,5 +1,6 @@
 package upm.etsiinf.daw.controller;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class AdminMoviesController {
+    @Secured("ROLE_ADMIN")
     @GetMapping("/admin/movies")
     public ModelAndView adminUsers(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
