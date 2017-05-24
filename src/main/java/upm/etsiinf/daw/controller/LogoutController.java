@@ -18,11 +18,12 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class LogoutController {
     @GetMapping("/logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response){
+    public ModelAndView logout(HttpServletRequest request, HttpServletResponse response){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)){
             new SecurityContextLogoutHandler().logout(request, response, auth);
+            return new ModelAndView("redirect:/login?logout");
         }
-        return "redirect:/login?logout";
+        return new ModelAndView("redirect:/login");
     }
 }

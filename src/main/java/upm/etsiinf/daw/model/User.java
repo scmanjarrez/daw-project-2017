@@ -1,5 +1,7 @@
 package upm.etsiinf.daw.model;
 
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -7,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
 import java.util.List;
 import java.util.Set;
 
@@ -21,6 +24,7 @@ public class User {
     private String email;
     private int active;
 
+//    @Cascade(CascadeType.DELETE)
     @ElementCollection(fetch = FetchType.EAGER)
     private List<GrantedAuthority> roles;
 

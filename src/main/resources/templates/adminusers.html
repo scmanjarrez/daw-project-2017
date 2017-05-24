@@ -11,12 +11,81 @@
     <body>
         <div th:replace="fragments/body :: topbar"></div>
 
-        <div>
-            <p th:text="'Helloaaaa, ' + ${user} + '!'"></p>
-            <p th:text="${#httpServletRequest.requestURI}">asdasd</p>
-            <button class="btn btn-success">asdasd</button>
-        </div>
+        <div class="container">
+            <div class="text-center">
+                <br>
+                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <button id="b_list" class="btn btn-lg btn-default" onClick="showListar()">
+                            <span class="glyphicon glyphicon-plus"></span>
+                            Dar de alta usuario
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button id="b_busc" class="btn btn-lg btn-default" onClick="showBuscar()">
+                            <span class="glyphicon glyphicon-minus"></span>
+                            Dar de baja usuario
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button id="b_inf" class="btn btn-lg btn-default" onClick="showInformes()">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            Modificar usuario
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button id="b_otr" class="btn btn-lg btn-default" onClick="showOtros()">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            Eliminar usuario
+                        </button>
+                    </div>
+                </div>
+            </div>
 
         <div th:replace="fragments/body :: footer"></div>
     </body>
+
+    <script type="text/javascript">
+        showListar();
+        function showListar() {
+            $('button#b_list').addClass("active");
+            $('button#b_busc').removeClass("active");
+            $('button#b_inf').removeClass("active");
+            $('button#b_otr').removeClass("active");
+            $('div#listar').show()
+            $('div#buscar').hide();
+            $('div#informes').hide();
+            $('div#otros').hide();
+        }
+        function showBuscar() {
+            $('button#b_list').removeClass("active");
+            $('button#b_busc').addClass("active");
+            $('button#b_inf').removeClass("active");
+            $('button#b_otr').removeClass("active");
+            $('div#listar').hide()
+            $('div#buscar').show();
+            $('div#informes').hide();
+            $('div#otros').hide();
+        }
+        function showInformes() {
+            $('button#b_list').removeClass("active");
+            $('button#b_busc').removeClass("active");
+            $('button#b_inf').addClass("active");
+            $('button#b_otr').removeClass("active");
+            $('div#listar').hide()
+            $('div#buscar').hide();
+            $('div#informes').show();
+            $('div#otros').hide();
+        }
+        function showOtros() {
+            $('button#b_list').removeClass("active");
+            $('button#b_busc').removeClass("active");
+            $('button#b_inf').removeClass("active");
+            $('button#b_otr').addClass("active");
+            $('div#listar').hide()
+            $('div#buscar').hide();
+            $('div#informes').hide();
+            $('div#otros').show();
+        }
+    </script>
 </html>

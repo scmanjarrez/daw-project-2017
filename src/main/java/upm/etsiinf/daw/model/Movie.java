@@ -1,12 +1,6 @@
 package upm.etsiinf.daw.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -19,18 +13,20 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
+    @Column(length = 1000)
     private String title;
+    @Column(length = 2000)
     private String url;
+    @Column(length = 2000)
     private String description;
     private int year;
-    private String director;
+//    private String director;
 
-    @ManyToMany
-    @JoinTable(name = "film_actor",
-            joinColumns = @JoinColumn(name = "film_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "id"))
-    private List<Actor> cast;
+//    @ManyToMany
+//    @JoinTable(name = "film_actor",
+//            joinColumns = @JoinColumn(name = "film_id", referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "id"))
+//    private List<Actor> cast;
     private String cover;
     private float rating;
 
@@ -42,14 +38,14 @@ public class Movie {
         this.url = url;
     }
 
-    public Movie(String title, String url, String description, int year, String director, List<Actor> cast,
+    public Movie(String title, String url, String description, int year, /*String director, List<Actor> cast,*/
                  String cover, float rating) {
         this.title = title;
         this.url = url;
         this.description = description;
         this.year = year;
-        this.director = director;
-        this.cast = cast;
+//        this.director = director;
+//        this.cast = cast;
         this.cover = cover;
         this.rating = rating;
     }
@@ -94,21 +90,21 @@ public class Movie {
         this.year = year;
     }
 
-    public String getDirector() {
-        return director;
-    }
-
-    public void setDirector(String director) {
-        this.director = director;
-    }
-
-    public List<Actor> getCast() {
-        return cast;
-    }
-
-    public void setCast(List<Actor> cast) {
-        this.cast = cast;
-    }
+//    public String getDirector() {
+//        return director;
+//    }
+//
+//    public void setDirector(String director) {
+//        this.director = director;
+//    }
+//
+//    public List<Actor> getCast() {
+//        return cast;
+//    }
+//
+//    public void setCast(List<Actor> cast) {
+//        this.cast = cast;
+//    }
 
     public String getCover() {
         return cover;
@@ -134,8 +130,8 @@ public class Movie {
                 ", url='" + url + '\'' +
                 ", description='" + description + '\'' +
                 ", year=" + year +
-                ", director='" + director + '\'' +
-                ", cast=" + cast +
+//                ", director='" + director + '\'' +
+//                ", cast=" + cast +
                 ", cover='" + cover + '\'' +
                 ", rating=" + rating +
                 '}';
