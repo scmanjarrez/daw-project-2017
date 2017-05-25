@@ -43,8 +43,6 @@ public class SearchController {
                 if (movieInfo.getResults() != null && !movieInfo.getResults().isEmpty()) {
                     List<MovieTMDB> lMovies = movieInfo.getResults();
                     MovieTMDB mMovie = lMovies.get(0);
-                    System.out.println(mMovie);
-                    System.out.println(movie);
 
                     if (movie.getYear() == 0) {
                         if (mMovie.getYear() != null && !mMovie.getYear().isEmpty()) {

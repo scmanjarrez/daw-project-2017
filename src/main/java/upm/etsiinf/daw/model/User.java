@@ -22,7 +22,7 @@ public class User {
     private String username;
     private String password;
     private String email;
-    private int active;
+//    private int active;
 
 //    @Cascade(CascadeType.DELETE)
     @ElementCollection(fetch = FetchType.EAGER)
@@ -34,7 +34,7 @@ public class User {
     public User(String username, String password, String email, List<GrantedAuthority> roles) {
         this.username = username;
         this.password = new BCryptPasswordEncoder().encode(password);
-        this.active = 1;
+//        this.active = 1;
         this.email = email;
         this.roles = roles;
     }
@@ -52,7 +52,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = new BCryptPasswordEncoder().encode(password);
     }
 
     public String getEmail() {
@@ -63,13 +63,13 @@ public class User {
         this.email = email;
     }
 
-    public int getActive() {
-        return active;
-    }
-
-    public void setActive(int active) {
-        this.active = active;
-    }
+//    public int getActive() {
+//        return active;
+//    }
+//
+//    public void setActive(int active) {
+//        this.active = active;
+//    }
 
     public List<GrantedAuthority> getRoles() {
         return roles;
@@ -85,7 +85,7 @@ public class User {
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", active=" + active +
+//                ", active=" + active +
                 ", roles=" + roles +
                 '}';
     }

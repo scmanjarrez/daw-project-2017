@@ -7,12 +7,177 @@
     <body>
         <div th:replace="fragments/body :: topbar"></div>
 
-        <div>
-            <p th:text="'Helloaaaa, ' + ${user} + '!'"></p>
-            <p th:text="${#httpServletRequest.requestURI}">asdasd</p>
-            <button class="btn btn-success">asdasd</button>
+        <div class="container">
+            <div align="center" th:if="${added}" class="alert alert-success" role="alert">
+                <p>Película añadida correctamente.</p>
+            </div>
+            <div align="center" th:if="${removed}" class="alert alert-success" role="alert">
+                <p>Película eliminada correctamente.</p>
+            </div>
+            <div align="center" th:if="${modified}" class="alert alert-success" role="alert">
+                <p>Película modificada correctamente.</p>
+            </div>
+            <div align="center" th:if="${movieDoesNotExist}" class="alert alert-danger" role="alert">
+                <p>La película no existe.</p>
+            </div>
+            <div align="center" th:if="${alreadyAdded}" class="alert alert-danger" role="alert">
+                <p>La película ya existe.</p>
+            </div>
+            <div class="text-center">
+                <br>
+                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <button id="b_add" class="btn btn-lg btn-default" onClick="showAdd()">
+                            <span class="glyphicon glyphicon-plus"></span>
+                            Añadir película
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button id="b_mod" class="btn btn-lg btn-default" onClick="showModify()">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            Modificar película
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button id="b_del" class="btn btn-lg btn-default" onClick="showDelete()">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            Eliminar película
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
 
+        <div hidden align="center" id="addMovie">
+            <form action="/admin/movies" method="post">
+                <table border="0">
+                    <tr>
+                        <td colspan="2" align="center"><h2>Añadir nueva película</h2></td>
+                    </tr>
+                    <tr class="separator" />
+                    <tr class="separator" />
+                    <tr class="separator" />
+                    <tr>
+                        <td>Título:</td>
+                        <td><input type="text" name="title" class="form-control" required/></td>
+                    </tr>
+                    <tr class="separator" />
+                    <tr>
+                        <td>URL del trailer:</td>
+                        <td><input type="text" name="url" class="form-control" required/></td>
+                    </tr>
+                    <tr class="separator" />
+                    <tr>
+                        <td>Description:</td>
+                        <td><input type="text" name="description" class="form-control"/></td>
+                    </tr>
+                    <tr class="separator" />
+                    <tr>
+                        <td>Año:</td>
+                        <td><input type="number" min="1970" max="2017" name="year" class="form-control"/></td>
+                    </tr>
+                    <tr class="separator" />
+                    <tr>
+                        <td>URL de la portada:</td>
+                        <td><input type="text" name="cover" class="form-control"/></td>
+                    </tr>
+                    <tr class="separator" />
+                    <tr>
+                        <td>Valoración:</td>
+                        <td><input type="number" step="0.1" min="0.1" max="10" name="rating" class="form-control"/></td>
+                    </tr>
+                    <tr>
+                        <input type="hidden"  th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                    </tr>
+                    <tr class="separator" />
+                    <tr class="separator" />
+                    <tr class="separator" />
+                    <tr>
+                        <td colspan="2" align="center"><input class="btn btn-lg btn-primary" type="submit" value="Añadir"/></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+        <div hidden align="center" id="modifyMovie">
+            <form action="/admin/movies" th:method="put">
+                <table border="0">
+                    <tr>
+                        <td colspan="2" align="center"><h2>Modificar película</h2></td>
+                    </tr>
+                    <tr class="separator" />
+                    <tr class="separator" />
+                    <tr class="separator" />
+                    <tr>
+                        <td>Título:</td>
+                        <td><input type="text" name="title" class="form-control" required/></td>
+                    </tr>
+                    <tr class="separator" />
+                    <tr>
+                        <td>URL del trailer:</td>
+                        <td><input type="text" name="url" class="form-control"/></td>
+                    </tr>
+                    <tr class="separator" />
+                    <tr>
+                        <td>Description:</td>
+                        <td><input type="text" name="description" class="form-control"/></td>
+                    </tr>
+                    <tr class="separator" />
+                    <tr>
+                        <td>Año:</td>
+                        <td><input type="number" min="1970" max="2017" name="year" class="form-control"/></td>
+                    </tr>
+                    <tr class="separator" />
+                    <tr>
+                        <td>URL de la portada:</td>
+                        <td><input type="text" name="cover" class="form-control"/></td>
+                    </tr>
+                    <tr class="separator" />
+                    <tr>
+                        <td>Valoración:</td>
+                        <td><input type="number" step="0.1" min="0.1" max="10" name="rating" class="form-control"/></td>
+                    </tr>
+                    <tr>
+                        <input type="hidden"  th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                    </tr>
+                    <tr class="separator" />
+                    <tr class="separator" />
+                    <tr class="separator" />
+                    <tr>
+                        <td colspan="2" align="center"><input class="btn btn-lg btn-info" type="submit" value="Modificar"/></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+        <div hidden align="center" id="deleteMovie">
+            <form action="/admin/movies" th:method="delete">
+                <table border="0">
+                    <tr>
+                        <td colspan="2" align="center"><h2>Eliminar película</h2></td>
+                    </tr>
+                    <tr class="separator" />
+                    <tr class="separator" />
+                    <tr class="separator" />
+                    <tr>
+                        <td>Título:</td>
+                        <td><input type="text" name="title" class="form-control" required/></td>
+                    </tr>
+                    <tr>
+                        <input type="hidden"  th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                    </tr>
+                    <tr class="separator" />
+                    <tr class="separator" />
+                    <tr class="separator" />
+                    <tr>
+                        <td colspan="2" align="center"><input class="btn btn-lg btn-danger" type="submit" value="Eliminar"/></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+
         <div th:replace="fragments/body :: footer"></div>
+        <script type="text/javascript" th:src="@{/script/adminmovies.js}"></script>
     </body>
 </html>

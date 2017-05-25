@@ -27,7 +27,8 @@
                                 Inicio
                             </a>
                         </li>
-                        <li sec:authorize="hasAuthority('ROLE_ADMIN')" th:classappend="${#httpServletRequest.requestURI == '/admin/users'}? active: ''">
+                        <li sec:authorize="hasAuthority('ROLE_ADMIN')" th:classappend="${#httpServletRequest.requestURI == '/admin/users'
+                            or #httpServletRequest.requestURI == '/admin'}? active: ''">
                             <a th:href="@{/admin/users}">
                                 <span class="glyphicon glyphicon-user"></span>
                                 Administrar Usuarios
@@ -61,7 +62,7 @@
                             <ul class="dropdown-menu">
                                 <li>
                                     <a href="/info">
-                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                        <span class="glyphicon glyphicon-info-sign"></span>
                                          Mi Cuenta
                                     </a>
                                 </li>
