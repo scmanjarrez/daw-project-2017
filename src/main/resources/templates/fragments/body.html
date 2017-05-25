@@ -27,6 +27,12 @@
                                 Inicio
                             </a>
                         </li>
+                        <li th:classappend="${#httpServletRequest.requestURI == '/biblioteca'}? active: ''">
+                            <a th:href="@{/biblioteca}">
+                                <span class="glyphicon glyphicon-list-alt"></span>
+                                Biblioteca
+                            </a>
+                        </li>
                         <li sec:authorize="hasAuthority('ROLE_ADMIN')" th:classappend="${#httpServletRequest.requestURI == '/admin/users'
                             or #httpServletRequest.requestURI == '/admin'}? active: ''">
                             <a th:href="@{/admin/users}">
@@ -42,10 +48,12 @@
                         </li>
 
                     </ul>
-                    <div class="col-sm-3 col-md-3">
+                    <div class="pull-right">
+                    <div class="col-sm-9 col-md-9">
                         <form class="navbar-form" role="search" method="get" th:action="@{/buscar}">
                             <div class="input-group">
-                                <input type="text" class="form-control" name="search" placeholder="Buscar película.." user="q">
+                                <input type="text" class="form-control" name="search"
+                                       th:value="${param.search != null}? ${param.search[0]} : ''" placeholder="Buscar película..">
                                 <div class="input-group-btn">
                                     <button class="btn btn-success" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                                 </div>
@@ -76,6 +84,7 @@
                             </ul>
                         </li>
                     </ul>
+                    </div>
                 </div><!--/.nav-collapse -->
             </div>
         </nav>

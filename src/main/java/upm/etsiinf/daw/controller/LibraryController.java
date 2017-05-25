@@ -16,10 +16,11 @@ import upm.etsiinf.daw.rest.SearchTMDB;
 import java.util.List;
 
 /**
- * Created by S on 23/05/2017.
+ * Created by S on 25/05/2017.
  */
 @Controller
-public class SearchController {
+@SuppressWarnings("Duplicates")
+public class LibraryController {
     @Autowired
     private MovieRepository movieRepository;
 
@@ -27,12 +28,12 @@ public class SearchController {
     final private String api_url = "https://api.themoviedb.org/3/search/movie?";
     final private String api_image = "https://image.tmdb.org/t/p/w300";
 
-    @GetMapping("/buscar")
-    public ModelAndView search(@RequestParam("search") String search){
+    @GetMapping("/biblioteca")
+    public ModelAndView search(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String name = authentication.getName();
 
-        List<Movie> listMovies = movieRepository.findByTitleContainingIgnoreCase(search);
+        List<Movie> listMovies = movieRepository.findAll();
 
         if (listMovies != null && !listMovies.isEmpty()) {
             RestTemplate restTemplate = new RestTemplate();
@@ -62,7 +63,7 @@ public class SearchController {
                     }
 
                     if (movie.getRating() == 0.0) {
-                            movie.setRating(mMovie.getVote_average());
+                        movie.setRating(mMovie.getVote_average());
                     }
 
                     movieRepository.save(movie);

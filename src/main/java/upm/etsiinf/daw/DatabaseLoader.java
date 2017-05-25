@@ -38,33 +38,33 @@ public class DatabaseLoader {
             userRepository.save(new User("user", "user", "user@user.com", Arrays.asList(userRoles)));
         }
 
-        Movie movie = movieRepository.findByTitle("Average man");
+        Movie movie = movieRepository.findByTitle("DeadPool");
         if (movie == null){
-            movieRepository.save(new Movie("Average man","https://www.youtube.com/embed/TuP1chV24jo"));
+            movieRepository.save(new Movie("DeadPool","https://www.youtube.com/embed/FyKWUTwSYAs"));
         }
 
-        movie = movieRepository.findByTitle("Movie 1");
+        movie = movieRepository.findByTitle("Hamlet");
         if (movie == null){
             movieRepository.save(
-                    new Movie("Movie 1", "https://www.youtube.com/embed/dQw4w9WgXcQ"));
+                    new Movie("Hamlet", "https://www.youtube.com/embed/-rd74Gniz-A"));
         }
 
-        movie = movieRepository.findByTitle("Goodbye Lenin");
+        movie = movieRepository.findByTitle("La chica danesa");
         if (movie == null){
             movieRepository.save(
-                    new Movie("Goodbye Lenin","https://www.youtube.com/embed/ZH8o68Yrwbc"));
+                    new Movie("La chica danesa","https://www.youtube.com/embed/ENiuBpdrnZ8"));
         }
 
         movie = movieRepository.findByTitle("Letters From Iwo Jima");
         if (movie == null){
             movieRepository.save(
-                    new Movie("Letters From Iwo Jima","https://www.youtube.com/embed/jVwjRC6Ncto"));
+                    new Movie("Letters From Iwo Jima","https://www.youtube.com/embed/51lo2dpaZ_g"));
         }
 
         movie = movieRepository.findByTitle("Otoko-tachi no Yamato");
         if (movie == null){
             movieRepository.save(
-                    new Movie("Otoko-tachi no Yamato","https://www.youtube.com/embed/BA2bEXTnigc"));
+                    new Movie("Otoko-tachi no Yamato","https://www.youtube.com/embed/q4QWqDTCk2A"));
         }
     }
 }

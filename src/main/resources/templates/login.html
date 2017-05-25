@@ -1,34 +1,36 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 
     <head th:replace="fragments/head :: header">
     </head>
 
     <body>
+        <div class="container">
+            <br>
+            <div align="center" th:if="${logout}" class="alert alert-success" role="alert">
+                <p>Desconectado correctamente.</p>
+            </div>
+            <div align="center" th:if="${error}"  class="alert alert-danger" role="alert">
+                <p>Usuario o contraseña incorrectos.</p>
+            </div>
 
-    <div class="container">
-        <br>
-        <div align="center" th:if="${logout}" class="alert alert-success" role="alert">
-            <p>Desconectado correctamente.</p>
+            <img th:src="@{/images/cine.jpg}" class="img-responsive center-block" width="420" alt="Logo" />
+            <br>
+            <form th:action="@{/login}" method="POST" class="form-signin">
+                <h3 class="form-signin-heading" th:text="Bienvenido"></h3>
+                <br/>
+
+                <input type="text" id="username" name="username"  th:placeholder="Usuario" autofocus required
+                       class="form-control" /> <br/>
+                <input type="password"  th:placeholder="Contraseña" required
+                       id="password" name="password" class="form-control" /> <br />
+
+                <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Conectar"></button>
+            </form>
         </div>
-        <div align="center" th:if="${error}"  class="alert alert-danger" role="alert">
-            <p>Usuario o contraseña incorrectos.</p>
-        </div>
-
-        <img th:src="@{/images/cine.jpg}" class="img-responsive center-block" width="500" height="500" alt="Logo" />
-        <br>
-        <form th:action="@{/login}" method="POST" class="form-signin">
-            <h3 class="form-signin-heading" th:text="Bienvenido"></h3>
-            <br/>
-
-            <input type="text" id="username" name="username"  th:placeholder="Usuario" autofocus required
-                   class="form-control" /> <br/>
-            <input type="password"  th:placeholder="Contraseña" required
-                   id="password" name="password" class="form-control" /> <br />
-
-            <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Conectar"></button>
-        </form>
-    </div>
         <div th:replace="fragments/body :: footer"></div>
+        <script>
+            $('.alert').delay(5000).fadeOut();
+        </script>
     </body>
 </html>

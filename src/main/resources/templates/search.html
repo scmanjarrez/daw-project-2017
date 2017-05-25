@@ -8,7 +8,7 @@
     <body>
     <div th:replace="fragments/body :: topbar"></div>
     <div class="container">
-        <div class="col-sm-10">
+        <div align="center" class="col-sm-10 col-sm-offset-1">
             <div class = "table-responsive">
                 <table class="table">
                     <thead>
@@ -37,12 +37,12 @@
                             </td>
                             <td th:text="${movie.rating == 0.0}? '-' : ${movie.rating}">Valoración</td>
                             <td>
-                                <button class="btn btn-success" href="#youtubeModal" data-toggle="modal"
+                                <button class="btn btn-success" th:href="'#'+${movie.id}" data-toggle="modal"
                                         th:classappend="${#strings.isEmpty(movie.url)}? disabled : ''">
                                     <span class="glyphicon glyphicon-eye-open"></span>
                                     Ver
                                 </button>
-                                <div id="youtubeModal" class="modal fade">
+                                <div th:id="${movie.id}" class="modal fade">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -50,7 +50,8 @@
                                                 <h4 class="modal-title">Trailer</h4>
                                             </div>
                                             <div class="modal-body">
-                                                <iframe id="youtubeVideo" width="560" height="315" th:src="@{${movie.url}}" frameborder="0" allowfullscreen></iframe>
+                                                <iframe th:id="'#youtubeVideo'+${movie.id}" width="560" height="315"
+                                                        th:src="@{${movie.url}}" frameborder="0" allowfullscreen></iframe>
                                             </div>
                                         </div>
                                     </div>
@@ -64,5 +65,6 @@
     </div>
 
     <div th:replace="fragments/body :: footer"></div>
+    <script type="text/javascript" th:src="@{/javascript/search.js}"></script>
     </body>
 </html>
