@@ -20,13 +20,8 @@ public class Movie {
     @Column(length = 2000)
     private String description;
     private int year;
-//    private String director;
-
-//    @ManyToMany
-//    @JoinTable(name = "film_actor",
-//            joinColumns = @JoinColumn(name = "film_id", referencedColumnName = "id"),
-//            inverseJoinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "id"))
-//    private List<Actor> cast;
+    private String director;
+    private String cast;
     private String cover;
     private float rating;
 
@@ -38,14 +33,14 @@ public class Movie {
         this.url = url;
     }
 
-    public Movie(String title, String url, String description, int year, /*String director, List<Actor> cast,*/
+    public Movie(String title, String url, String description, int year, String director, String cast,
                  String cover, float rating) {
         this.title = title;
         this.url = url;
         this.description = description;
         this.year = year;
-//        this.director = director;
-//        this.cast = cast;
+        this.director = director;
+        this.cast = cast;
         this.cover = cover;
         this.rating = rating;
     }
@@ -90,21 +85,21 @@ public class Movie {
         this.year = year;
     }
 
-//    public String getDirector() {
-//        return director;
-//    }
-//
-//    public void setDirector(String director) {
-//        this.director = director;
-//    }
-//
-//    public List<Actor> getCast() {
-//        return cast;
-//    }
-//
-//    public void setCast(List<Actor> cast) {
-//        this.cast = cast;
-//    }
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public String getCast() {
+        return cast;
+    }
+
+    public void setCast(String cast) {
+        this.cast = cast;
+    }
 
     public String getCover() {
         return cover;
@@ -130,8 +125,8 @@ public class Movie {
                 ", url='" + url + '\'' +
                 ", description='" + description + '\'' +
                 ", year=" + year +
-//                ", director='" + director + '\'' +
-//                ", cast=" + cast +
+                ", director='" + director + '\'' +
+                ", cast=" + cast +
                 ", cover='" + cover + '\'' +
                 ", rating=" + rating +
                 '}';

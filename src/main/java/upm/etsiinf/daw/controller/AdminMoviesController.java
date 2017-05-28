@@ -38,6 +38,8 @@ public class AdminMoviesController {
                                      @RequestParam("url") String url,
                                      @RequestParam(name = "description", required = false) String description,
                                      @RequestParam(name = "year", required = false) String year,
+                                     @RequestParam(name = "director", required = false) String director,
+                                     @RequestParam(name = "cast", required = false) String cast,
                                      @RequestParam(name = "cover", required = false) String cover,
                                      @RequestParam(name = "rating", required = false) String rating,
                                      RedirectAttributes redirectAttributes){
@@ -49,6 +51,12 @@ public class AdminMoviesController {
             }
             if (year != null && !year.isEmpty()){
                 movie.setYear(Integer.parseInt(year));
+            }
+            if (director != null && !director.isEmpty()){
+                movie.setDirector(director);
+            }
+            if (cast != null && !cast.isEmpty()){
+                movie.setCast(cast);
             }
             if (cover != null && !cover.isEmpty()){
                 movie.setCover(cover);
@@ -71,6 +79,8 @@ public class AdminMoviesController {
                                      @RequestParam(name = "url", required = false) String url,
                                      @RequestParam(name = "description", required = false) String description,
                                      @RequestParam(name = "year", required = false) String year,
+                                     @RequestParam(name = "director", required = false) String director,
+                                     @RequestParam(name = "cast", required = false) String cast,
                                      @RequestParam(name = "cover", required = false) String cover,
                                      @RequestParam(name = "rating", required = false) String rating,
                                      RedirectAttributes redirectAttributes){
@@ -84,6 +94,12 @@ public class AdminMoviesController {
             }
             if (year != null && !year.isEmpty()){
                 movie.setYear(Integer.parseInt(year));
+            }
+            if (director != null && !director.isEmpty()){
+                movie.setDirector(director);
+            }
+            if (cast != null && !cast.isEmpty()){
+                movie.setCast(cast);
             }
             if (cover != null && !cover.isEmpty()){
                 movie.setCover(cover);

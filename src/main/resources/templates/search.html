@@ -16,8 +16,8 @@
                         <th class="text-center">Título</th>
                         <th class="text-center">Descripción</th>
                         <th class="text-center">Año</th>
-                        <!--<th class="text-center">Director</th>-->
-                        <!--<th class="text-center">Reparto de actores</th>-->
+                        <th class="text-center">Director</th>
+                        <th class="text-center">Reparto</th>
                         <th class="text-center">Portada</th>
                         <th class="text-center">Valoración</th>
                         <th class="text-center"></th>
@@ -29,8 +29,10 @@
                             <td th:text="${#strings.isEmpty(movie.description)}? 'Descripción no disponible' : ${movie.description}"
                                 th:class="${#strings.isEmpty(movie.description)}? text-center : text-justify">Descripción</td>
                             <td th:text="${movie.year == 0}? '-': ${movie.year}">Año</td>
-                            <!--<td th:text="${movie.director}">Director</td>-->
-                            <!--<td th:text="${movie.cast}">Reparto</td>-->
+                            <td th:text="${#strings.isEmpty(movie.director)}? 'Director no disponible' : ${movie.director}"
+                                th:class="${#strings.isEmpty(movie.director)}? text-center : text-justify">Director</td>
+                            <td th:text="${#strings.isEmpty(movie.cast)}? 'Reparto no disponible' : ${movie.cast}"
+                                th:class="${#strings.isEmpty(movie.cast)}? text-center : text-justify">Reparto</td>
                             <td>
                                 <img th:if="${!#strings.isEmpty(movie.cover)}" th:src="@{${movie.cover}}" width="100" height="150"/>
                                 <p th:if="${#strings.isEmpty(movie.cover)}">Portada no disponible</p>
