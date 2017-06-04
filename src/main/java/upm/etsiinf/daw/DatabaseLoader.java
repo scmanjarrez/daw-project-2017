@@ -66,5 +66,35 @@ public class DatabaseLoader {
             movieRepository.save(
                     new Movie("Otoko-tachi no Yamato","https://www.youtube.com/embed/q4QWqDTCk2A"));
         }
+
+        movie = movieRepository.findByTitle("Alien: Covenant");
+        if (movie == null){
+            movieRepository.save(
+                    new Movie("Alien: Covenant","https://www.youtube.com/embed/svnAD0TApb8"));
+        }
+
+        movie = movieRepository.findByTitle("Piratas del Caribe 5");
+        if (movie == null){
+            movieRepository.save(
+                    new Movie("Piratas del Caribe 5","https://www.youtube.com/watch?v=IPf4rGw3XHw"));
+        }
+
+        movie = movieRepository.findByTitle("Guardianes de la Galaxia 2");
+        if (movie == null){
+            movieRepository.save(
+                    new Movie("Guardianes de la Galaxia 2","https://www.youtube.com/embed/12gvJgLE4us"));
+        }
+
+        movie = movieRepository.findByTitle("Déjame salir");
+        if (movie == null){
+            movieRepository.save(
+                    new Movie("Déjame salir","https://www.youtube.com/embed/X-tg05cAVwE"));
+        }
+
+        movie = movieRepository.findByTitle("Fast & Furious 8");
+        if (movie == null){
+            movieRepository.save(
+                    new Movie("Fast & Furious 8","https://www.youtube.com/embed/uisBaTkQAEs"));
+        }
     }
 }
