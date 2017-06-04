@@ -1,0 +1,6 @@
+CREATE USER 'testuser' IDENTIFIED BY 'dawtest';
+GRANT ALL PRIVILEGES ON * . * TO 'testuser';
+FLUSH PRIVILEGES;
+
+CREATE DATABASE `videoclub ;
+
