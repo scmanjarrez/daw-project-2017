@@ -76,7 +76,7 @@ public class DatabaseLoader {
         movie = movieRepository.findByTitle("Piratas del Caribe 5");
         if (movie == null){
             movieRepository.save(
-                    new Movie("Piratas del Caribe 5","https://www.youtube.com/watch?v=IPf4rGw3XHw"));
+                    new Movie("Piratas del Caribe 5","https://www.youtube.com/embed/IPf4rGw3XHw"));
         }
 
         movie = movieRepository.findByTitle("Guardianes de la Galaxia 2");
