@@ -3,8 +3,8 @@ import os
 import zipfile as zf
 
 
-files = ['mvnw', 'pom.xml', 'entrega.py']
-dirs = ['src', '.mvn', 'deploy']
+files = ['mvnw', 'pom.xml', 'entrega.py', 'deploy.sh']
+dirs = ['src', '.mvn']
 file_name = 'entrega.zip'
 
 
@@ -27,4 +27,6 @@ def main():
 
 
 if __name__ == '__main__':
+    print("Generando .zip...")
     main()
+    print("Fichero entrega.zip generado")

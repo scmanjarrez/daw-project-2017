@@ -170,10 +170,6 @@ echo -e "${NC}"
 
 vagrant up db
 
-curdir=`pwd`
-
-cd ..
-
 chmod +x mvnw
 
 echo -e "${GREEN}"
@@ -184,9 +180,7 @@ echo -e "${NC}"
 
 ./mvnw package
 
-cd $curdir
-
-ln -s ../target/daw-project-2017-0.0.1-SNAPSHOT.jar daw-project-2017-0.0.1-SNAPSHOT.jar
+ln -s target/daw-project-2017-0.0.1-SNAPSHOT.jar daw-project-2017-0.0.1-SNAPSHOT.jar
 
 echo -e "${GREEN}"
 echo -e "##########################################"
