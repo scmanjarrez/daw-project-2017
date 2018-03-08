@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 import upm.etsiinf.daw.model.User;
 import upm.etsiinf.daw.repository.UserRepository;
+import upm.etsiinf.daw.security.UserInfo;
 
 /**
  * Created by S on 24/05/2017.
@@ -20,10 +21,9 @@ public class UserController {
 
     @GetMapping("/info")
     public ModelAndView getInfo(){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userRepository.findByUsername(auth.getName());
+        UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return new ModelAndView("userinfo")
-                .addObject("userObj", user)
-                .addObject("user", user.getUsername());
+                .addObject("userObj", userInfo)
+                .addObject("user", userInfo.getName());
     }
 }

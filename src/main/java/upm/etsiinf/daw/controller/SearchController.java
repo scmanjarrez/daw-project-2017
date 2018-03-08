@@ -12,6 +12,7 @@ import upm.etsiinf.daw.model.Movie;
 import upm.etsiinf.daw.repository.MovieRepository;
 import upm.etsiinf.daw.rest.MovieTMDB;
 import upm.etsiinf.daw.rest.SearchTMDB;
+import upm.etsiinf.daw.security.UserInfo;
 
 import java.util.List;
 
@@ -29,8 +30,7 @@ public class SearchController {
 
     @GetMapping("/buscar")
     public ModelAndView search(@RequestParam("search") String search){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String name = authentication.getName();
+        UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         List<Movie> listMovies = movieRepository.findByTitleContainingIgnoreCase(search);
 
@@ -71,6 +71,6 @@ public class SearchController {
         }
         return new ModelAndView("search")
                 .addObject("movies", listMovies)
-                .addObject("user", name);
+                .addObject("user", userInfo.getName());
     }
 }

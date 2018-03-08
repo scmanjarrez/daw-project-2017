@@ -11,28 +11,25 @@
             <br>
             <br>
             <div class = "row">
-                <div class = "col-md-4"></div>
-                <div class = "col-md-2"><strong>Nombre de usuario: </strong></div>
-                <div class = "col-md-2" th:text="${userObj.username}">Nombre de usuario</div>
+                <img width="100px" height="100px" th:src="${userObj.picture}" class="center-block" alt="Imagen de perfil">
             </div>
             <br>
             <div class = "row">
                 <div class = "col-md-4"></div>
-                <div class = "col-md-2"><strong>Correo: </strong></div>
-                <div class = "col-md-2" th:text="${userObj.email}">Correo</div>
+                <div class = "col-md-2"><strong>Nombre: </strong></div>
+                <div class = "col-md-2" th:text="${userObj.given_name}">Nombre</div>
             </div>
-            <!--<br>-->
-            <!--<div class = "row">-->
-                <!--<div class = "col-md-4"></div>-->
-                <!--<div class = "col-md-2"><strong>Estado: </strong></div>-->
-                <!--<div class = "col-md-2" th:text="${userObj.active == 1}? 'Activo' : 'Inactivo'">Estado</div>-->
-            <!--</div>-->
             <br>
             <div class = "row">
                 <div class = "col-md-4"></div>
-                <div class = "col-md-2"><strong>Rol: </strong></div>
-                <div class = "col-md-2"
-                     th:text="${#strings.contains(userObj.roles,'USER')}? 'Usuario' : 'Administrador'">Rol</div>
+                <div class = "col-md-2"><strong>Apellido: </strong></div>
+                <div class = "col-md-2" th:text="${userObj.family_name}">Apellido</div>
+            </div>
+            <br>
+            <div class = "row">
+                <div class = "col-md-4"></div>
+                <div class = "col-md-2"><strong>Perfil: </strong></div>
+                <a class = "col-md-2" th:href="${userObj.profile}" th:text="${userObj.profile}">Perfil</a>
             </div>
             <br>
             <br>
